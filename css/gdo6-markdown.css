@@ -1,0 +1,10 @@
+.gdt-html > pre {
+	margin: 1rem 0 1rem 1rem;
+}
+
+.wysiwyg.editormd {
+	min-height: 32rem;
+	max-height: 48rem;
+	height: 50vh;
+	width: 100%;
+}

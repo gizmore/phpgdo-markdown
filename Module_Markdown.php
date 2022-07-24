@@ -27,7 +27,7 @@ final class Module_Markdown extends GDO_Module
 		];
 	}
 	
-	public function getModuleLicenseFilenames() : array
+	public function getLicenseFilenames() : array
 	{
 		return [
 			'markdown/LICENSE',
@@ -47,7 +47,7 @@ final class Module_Markdown extends GDO_Module
 	public function cfgDecoder() { return $this->getConfigVar('markdown_decoder'); }
 	public function cfgJSEditor() { return $this->getConfigVar('markdown_js_editor'); }
 	
-	public function onInit() : void
+	public function onInit()
 	{
 		if ($this->cfgDecoder())
 		{

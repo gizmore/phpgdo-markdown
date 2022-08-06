@@ -81,10 +81,10 @@ final class Module_Markdown extends GDO_Module
 		if ($this->cfgJSEditor())
 		{
 			$this->addBowerJS("editor.md/editormd{$min}.js");
-			$this->addJS('js/gdo6-markdown.js');
+			$this->addJS('js/gdo-markdown.js');
 			$this->addCSS("css/editormd.css");
 		}
-		$this->addCSS('css/gdo6-markdown.css');
+		$this->addCSS('css/gdo-markdown.css');
 		
 		# Load language pack
 		if ($this->cfgJSEditor())

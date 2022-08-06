@@ -1,7 +1,7 @@
 "use strict";
 
 $(function() {
-	$('.wysiwyg').each(function(){
+	$('.wysiwyg textarea').each(function(){
 		const id = this.id;
 		console.log('Apply markdown editor to #' + id);
 		editormd(id, {

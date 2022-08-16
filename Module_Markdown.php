@@ -5,7 +5,6 @@ use GDO\Core\GDO_Module;
 use GDO\Core\GDT_Array;
 use GDO\UI\GDT_Message;
 use GDO\Util\Strings;
-use GDO\Javascript\Module_Javascript;
 use GDO\Core\GDT_Checkbox;
 use GDO\Language\Trans;
 
@@ -77,7 +76,7 @@ final class Module_Markdown extends GDO_Module
 	
 	public function onIncludeScripts() : void
 	{
-		$min = Module_Javascript::instance()->cfgMinAppend();
+		$min = $this->cfgMinAppend();
 		if ($this->cfgJSEditor())
 		{
 			$this->addBowerJS("editor.md/editormd{$min}.js");

@@ -11,7 +11,7 @@ final class MarkdownTest extends TestCase
     {
         $input = '<hi>';
         $msg = new Decoder($input);
-        assertEquals('&lt;hi&gt;', $msg->decoded());
+        assertEquals('&lt;hi&gt;', $msg->decoded(), 'Test if input validation works for Markdown renderer.');
     }
     
 }

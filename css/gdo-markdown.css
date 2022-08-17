@@ -3,10 +3,8 @@
 }
 
 .wysiwyg.editormd {
-	min-height: 28vh;
-/* 	max-height: 80vh; */
+	min-height: 32vh;
 	height: 32vh;
-/* 	width: 100%; */
 }
 
 .editormd-toolbar {

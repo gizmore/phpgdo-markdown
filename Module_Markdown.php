@@ -13,11 +13,14 @@ use GDO\Language\Trans;
  * Uses markdown from 
  * 
  * @author gizmore
- * @version 6.11.0
+ * @version 7.0.1
  * @since 6.10.5
  */
 final class Module_Markdown extends GDO_Module
 {
+	public int $priority = 45;
+	public string $license = 'MIT';
+	
 	public function getDependencies() : array
 	{
 		return [

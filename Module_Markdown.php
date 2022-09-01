@@ -63,6 +63,7 @@ final class Module_Markdown extends GDO_Module
 	public static function decode($input)
 	{
 		$html = (new Decoder($input))->decoded();
+		$html = trim($html);
 		return GDT_Message::getPurifier()->purify($html);
 	}
 	

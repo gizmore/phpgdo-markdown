@@ -49,7 +49,7 @@ final class Module_Markdown extends GDO_Module
 	public function cfgDecoder() { return $this->getConfigVar('markdown_decoder'); }
 	public function cfgJSEditor() { return $this->getConfigVar('markdown_js_editor'); }
 	
-	public function onInit()
+	public function onModuleInit()
 	{
 		if ($this->cfgDecoder())
 		{

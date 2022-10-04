@@ -1,4 +1,9 @@
 {
+  "name": "phpgdo-markdown",
+  "author": "gizmore",
+  "license": "MIT",
+  "version": "7.0.1",
+  "description": "Markdown editor for phpgdo GDOv7.",
   "dependencies": {
     "editor.md": "^1.5.0"
   }

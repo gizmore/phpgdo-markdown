@@ -39,6 +39,14 @@ final class Module_Markdown extends GDO_Module
 		];
 	}
 	
+	public function thirdPartyFolders() : array
+	{
+		return [
+			'bower_components/',
+			'markdown/',
+		];
+	}
+	
 	public function getConfig() : array
 	{
 		return [
@@ -102,11 +110,6 @@ final class Module_Markdown extends GDO_Module
 					break;
 			}
 		}
-	}
-	
-	public function hookIgnoreDocsFiles(GDT_Array $ignore)
-	{
-		$ignore->data[] = 'GDO/Markdown/markdown/**/*';
 	}
 	
 }

@@ -2,34 +2,35 @@
 namespace GDO\Markdown;
 
 use GDO\Core\GDO_Module;
-use GDO\Core\GDT_Array;
 use GDO\UI\GDT_Message;
-use GDO\Util\Strings;
 use GDO\Core\GDT_Checkbox;
 use GDO\Language\Trans;
+use GDO\HTML\Module_HTML;
 
 /**
  * Markdown editor for gdo6.
  * Uses markdown from 
  * 
  * @author gizmore
- * @version 7.0.1
+ * @version 7.0.2
  * @since 6.10.5
  */
 final class Module_Markdown extends GDO_Module
 {
+	
 	public int $priority = 45;
 	public string $license = 'MIT';
 	
-	public function getDependencies() : array
+	public function getDependencies(): array
 	{
 		return [
+			'HTML',
 			'JQuery',
 			'FontAwesome',
 		];
 	}
 	
-	public function getLicenseFilenames() : array
+	public function getLicenseFilenames(): array
 	{
 		return [
 			'markdown/LICENSE',
@@ -39,7 +40,7 @@ final class Module_Markdown extends GDO_Module
 		];
 	}
 	
-	public function thirdPartyFolders() : array
+	public function thirdPartyFolders(): array
 	{
 		return [
 			'bower_components/',
@@ -47,43 +48,23 @@ final class Module_Markdown extends GDO_Module
 		];
 	}
 	
-	public function getConfig() : array
+	public function getConfig(): array
 	{
 		return [
-			GDT_Checkbox::make('markdown_decoder')->initial('1'),
 			GDT_Checkbox::make('markdown_js_editor')->initial('1'),
 		];
 	}
-	public function cfgDecoder() { return $this->getConfigVar('markdown_decoder'); }
 	public function cfgJSEditor() { return $this->getConfigVar('markdown_js_editor'); }
 	
 	public function onModuleInit()
 	{
-		if ($this->cfgDecoder())
-		{
-			GDT_Message::$DECODERS['Markdown'] =
-			GDT_Message::$DECODER = [self::class, 'decode'];
-			GDT_Message::$EDITOR_NAME = 'Markdown';
-			spl_autoload_register([$this, 'autoloadMarkdown']);
-		}
-	}
-
-	public static function decode($input)
-	{
-		$html = (new Decoder($input))->decoded();
-		$html = trim($html);
-		return GDT_Message::getPurifier()->purify($html);
+		GDT_Message::addDecoder('Markdown', [self::class, 'DECODE']);
 	}
 	
-	public function autoloadMarkdown($class)
+	public static function DECODE(string $s): string
 	{
-		if (str_starts_with($class, 'cebe\\markdown\\'))
-		{
-			$class = Strings::substrFrom($class, 'cebe\\markdown\\');
-			$class = str_replace('\\', '/', $class) . '.php';
-			$class = $this->filePath('markdown/'.$class);
-			require_once $class;
-		}
+		$s = Decoder::decoded($s);
+		return Module_HTML::PURIFY($s);
 	}
 	
 	public function onIncludeScripts() : void

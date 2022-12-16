@@ -1,25 +1,44 @@
 <?php
 namespace GDO\Markdown;
 
+use GDO\Util\Strings;
 use cebe\markdown\GithubMarkdown;
 
+/**
+ * Decode Markdown into HTML.
+ * 
+ * @author gizmore
+ * @since 7.0.2
+ */
 final class Decoder
 {
-    private $message;
-    
-    public function __construct($message)
+	
+	/**
+	 * On init register the autoloader.
+	 * Init is only called when there needs to be markdown decoded. zero cost!
+	 */
+	public static function init(): void
+	{
+		spl_autoload_register([self::class, 'autoloadMarkdown'], true);
+	}
+	
+    public static function autoloadMarkdown(string $class)
     {
-        $this->message = $message;
+    	if (str_starts_with($class, 'cebe\\markdown\\'))
+    	{
+    		$class = Strings::substrFrom($class, 'cebe\\markdown\\');
+    		$class = str_replace('\\', '/', $class) . '.php';
+    		$class = Module_Markdown::instance()->filePath('markdown/'.$class);
+    		require_once $class;
+    	}
     }
     
-    public function decoded()
+    public static function decoded(string $s): string
     {
-    	static $parser;
-    	if ($parser === null)
-    	{
-    		$parser = new GithubMarkdown();
-    	}
-        return $parser->parse($this->message);
+    	static $PARSER = new GithubMarkdown();
+    	return $PARSER->parse($s);
     }
     
 }
+
+Decoder::init();

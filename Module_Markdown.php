@@ -64,7 +64,7 @@ final class Module_Markdown extends GDO_Module
 	public static function DECODE(string $s): string
 	{
 		$s = Decoder::decoded($s);
-		return Module_HTML::PURIFY($s);
+		return Module_HTML::instance()->purify($s);
 	}
 	
 	public function onIncludeScripts() : void

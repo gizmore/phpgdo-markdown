@@ -1,12 +1,12 @@
 .gdt-html > pre {
-	margin: 1rem 0 1rem 1rem;
+    margin: 1rem 0 1rem 1rem;
 }
 
 .wysiwyg.editormd {
-	min-height: 32vh;
-	height: 32vh;
+    min-height: 32vh;
+    height: 32vh;
 }
 
 .editormd-toolbar {
-	z-index: 0;
+    z-index: 0;
 }

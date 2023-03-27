@@ -61,7 +61,7 @@ final class Module_Markdown extends GDO_Module
 		];
 	}
 
-	public function onModuleInit()
+	public function onModuleInit(): void
 	{
 		GDT_Message::addDecoder('Markdown', [self::class, 'DECODE']);
 	}

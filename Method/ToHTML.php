@@ -19,6 +19,11 @@ use GDO\Markdown\Decoder;
 class ToHTML extends \GDO\Form\MethodForm
 {
 
+    public function isShownInSitemap(): bool
+    {
+        return false;
+    }
+
     protected function createForm(GDT_Form $form): void
     {
         $form->addFields(
